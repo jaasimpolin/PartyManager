@@ -1,0 +1,19 @@
+<%= form_for(@guest) do |f| %>
+ l
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %> 
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :expected_attendees %> 
+    <%= f.text_field :expected_attendees %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

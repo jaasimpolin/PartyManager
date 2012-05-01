@@ -1,0 +1,33 @@
+<h1>My Parties</h1>
+<p><%= link_to "Create Party", new_party_path, :class =>"btn large primary" %></p>
+<table class="tbl">
+	<thead class="tbl">
+		<th>Name</th>
+		<th>Location</th>
+		<th>Date</th>
+		<th>Time</th>
+		<th>RSVPs</th>
+		<th>Expected</th>
+		<th>Confirmed</th>
+	</thead>
+	<% for party in @parties %>
+	<tr>
+		<td><%=link_to party.name, party_path(party) %></td>
+		<td><%= party.location.name %></td>
+		<td><%= party.party_date.strftime("%B %d, %Y") %></td>
+		<td><%= "#{party.start_time.strftime("%I:%M %p")} - #{party.end_time.strftime("%I:%M %p")}" %> </td>
+		<td>
+			<% if (party.rsvp_date.nil?) %>
+			No RSVP required
+			<% else %>
+			<%= party.rsvp_date.strftime("%B %d, %Y") %><% end %>
+		</td>
+		<td><%=party.expected%></td>
+		<td><%=party.confirmed%></td>
+		<td><%= link_to "Show", party %></td>
+		<td><%= link_to "Edit", edit_party_path(party) %></td>
+		<td><%= link_to "Destroy", party, :confirm => 'Are you sure?', :method => :delete %></td>
+	</tr>
+	<% end %>
+</table>
+

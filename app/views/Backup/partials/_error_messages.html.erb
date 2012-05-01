@@ -1,0 +1,12 @@
+<% if @host.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@host.errors.count, "error") %> 
+        prohibited this <%= object.class.to_s.underscore.humanize.downcase %> host from being saved:</h2>
+    <p>There were problems with the following fields:</p>
+    <ul>
+    <% @host.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

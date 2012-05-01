@@ -1,0 +1,13 @@
+<a href="<%= host_path(current_host) %>">
+<%= gravatar_for current_host, size: 32 %>
+</a>
+<h2>
+  <%= current_host.first_name %>
+<%= current_host.last_name %>
+</h2>
+<span>
+  <%= link_to "View my profile", current_host %>
+</span>
+<span>
+  <%= pluralize(current_host.parties.count, "Party") %>
+</span>

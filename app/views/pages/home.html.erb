@@ -1,0 +1,41 @@
+<% if signed_in? %>
+ <section>
+        <%= render 'partials/host_info' %>
+      </section>
+
+<div class="container-fluid">
+		<div class="sidebar">
+			<div class="well">
+				<h4>Plan Your Party</h4>
+				<%= render :partial => 'partials/side_nav' %>
+			</div>
+		</div>
+  <div class="row">
+    <aside class="span4">
+<%= link_to "Create Guest!", guests_path,
+                                class: "btn btn-large btn-primary" %>
+     
+      <section>
+<h2>Create a new Party</h2>
+        <%= render 'partials/party_form' %>
+      </section>
+    </aside>
+  </div>
+
+<% else %>
+  <div class="center hero-unit">
+    <h1>Welcome to the Party Manager</h1>
+
+    <h2>
+      This is the home page for the
+      <a href='#'>Party Manager</a>
+      Application.
+    </h2>
+
+    <%= link_to "Sign up now!", signup_path,
+                                class: "btn btn-large btn-primary" %>
+  </div>
+
+  <%= link_to image_tag("party.png", alt: "Party"), '#' %>
+
+<% end %>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+<%= csrf_meta_tags %>
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->    
+  </head>
+  <body>
+      <%= render 'partials/header' %>
+      <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+      <div class = "center hero-unit">
+      <%= yield %>
+      <%= render 'partials/footer' %>
+      </div>
+<%= debug(params) if Rails.env.development? %>
+</div>
+  </body>
+</html>

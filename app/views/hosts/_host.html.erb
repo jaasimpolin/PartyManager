@@ -1,0 +1,8 @@
+ <li>
+      <%= gravatar_for host, size: 42 %>
+      <%= link_to host.first_name, host %>
+ <% if current_host.admin? %>
+  | <%= link_to "delete", host, :method => :delete, :confirm => "You sure?",
+                                :title => "Delete #{host.first_name}" %>
+  <% end %>
+    </li>

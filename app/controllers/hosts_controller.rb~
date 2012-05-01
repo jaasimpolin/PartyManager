@@ -1,0 +1,72 @@
+class HostsController < ApplicationController
+before_filter :authenticate, :only => [:index, :edit, :update]
+before_filter :correct_host, :only => [:edit, :update]
+before_filter :admin_host,   :only => :destroy
+
+  def new
+	@host = Host.new
+	@title = "Sign up"
+  end
+
+def index
+    @title = "All hosts"
+    
+@hosts = Host.paginate(:page => params[:page])
+  end
+
+  def show
+	@host = Host.find(params[:id])
+  @parties = @host.parties.paginate(:page => params[:page])
+@guests = @host.guests.paginate(:page => params[:page])
+	@title = @host.last_name
+  end
+
+def edit
+@host = Host.find(params[:id])
+@title = "Edit host"
+end
+
+
+def destroy
+    Host.find(params[:id]).destroy
+    flash[:success] = "Host destroyed."
+    redirect_to hosts_path
+  end
+
+def update
+    @host = Host.find(params[:id])
+    if @host.update_attributes(params[:host])
+      flash[:success] = "Profile updated"
+      redirect_to @host
+    else
+     @title = "Edit host"
+      render 'edit'
+    end
+ end
+
+ def create
+    @host = Host.new(params[:host])
+    if @host.save
+sign_in @host
+      flash[:success] = "Welcome to Party Manager!"
+      redirect_to @host
+    else
+     @title = "Sign Up"
+      render 'new'
+    end
+ end
+
+private 
+
+def correct_host
+@host = Host.find(params[:id])
+redirect_to(root_path) unless current_host?(@host)
+end
+
+  def admin_host
+   @host = Host.find(params[:id])
+  redirect_to(root_path) if !current_host.admin? || current_host?(@host)
+   end
+
+end
+

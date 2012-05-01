@@ -1,0 +1,35 @@
+<h1 class="horizontal-form">Guest: <%= @guest.name %></h1>
+
+<p>
+  <b>Email:</b>
+  <%= @guest.email %>
+</p>
+
+<% if @guest.expected_attendees.nil? %>
+<p>
+  <b>Attendees:</b>
+  <%= @guest.expected_attendees %>
+</p>
+<% end %>
+<% if @guest.id> 0 %>
+
+<p>
+  <strong>Invite code:</strong>
+  <%= @guest.invite_code %>
+</p>
+
+<h2 class="horizontal-form">Parties Attended:</h2>
+<table class ="table">
+  <tr>
+    <th>Name</th>
+    <th>Date</th>
+  </tr>
+  </tr>
+<table>
+
+<% end %>
+
+<div class="link-actions">
+<%= link_to 'Edit', edit_guest_path(@guest) %> |
+<%= link_to 'Back', guests_path %>
+</div>

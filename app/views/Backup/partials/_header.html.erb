@@ -1,0 +1,25 @@
+<header class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+      <div class="container-fluid">
+<a class="brand" href="#">AlDOHA Party Manager</a>
+                <nav>
+          <ul class = "nav pull-right">
+            <li><%= link_to "Home", root_path %></li>
+            		
+<li><%= link_to "Hosts", hosts_path %></li>
+<li><%= link_to "Profile", current_host %></li>
+<li><%= link_to "Settings", edit_host_path(current_host) %></li>
+<% if signed_in? %>
+ <li> <% if current_host %> Logged in as <%= link_to "#{current_host.first_name}", edit_host_path(current_host) %><%end%> </li>
+<% end %>
+
+<% if signed_in? %>
+		 <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+<% else %>
+<li><%= link_to "Sign in", signin_path %></li>
+<% end %>
+          </ul>
+        </nav>
+</div>
+</div>
+     </header>
